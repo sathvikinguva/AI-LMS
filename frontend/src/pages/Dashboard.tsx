@@ -2,7 +2,6 @@ import React from 'react';
 import { BarChart, Clock, Award } from 'lucide-react';
 
 const Dashboard = () => {
-  // Mock quiz history data
   const quizHistory = [
     { id: 1, subject: 'Mathematics', score: 85, date: '2024-03-15', duration: '45 mins' },
     { id: 2, subject: 'Physics', score: 92, date: '2024-03-14', duration: '30 mins' },

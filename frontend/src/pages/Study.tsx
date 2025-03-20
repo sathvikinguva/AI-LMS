@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Loader } from 'lucide-react';
 
-// Use your backend URL instead of directly accessing the external API
 const API_URL = 'http://localhost:5000/api/chat';
 
 interface Message {
@@ -17,7 +16,6 @@ const Study = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom when messages update
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -25,7 +23,7 @@ const Study = () => {
   const fetchAIResponse = async (query: string) => {
     try {
       setIsLoading(true);
-      console.log("📤 Sending request to:", API_URL);
+      console.log("Sending request to:", API_URL);
       
       const response = await fetch(API_URL, {
         method: 'POST',
@@ -37,22 +35,20 @@ const Study = () => {
         })
       });
 
-      console.log("📥 Response status:", response.status);
+      console.log("Response status:", response.status);
       
       if (!response.ok) {
         throw new Error(`API error: ${response.status}`);
       }
 
       const data = await response.json();
-      console.log("📦 Response data:", data);
-      
-      // Return text response
-      console.log("💬 Text response:", data.response);
+      console.log("Response data:", data);
+      console.log("Text response:", data.response);
       return {
         text: data.response || "I couldn't process your request."
       };
     } catch (error) {
-      console.error('❌ Error fetching AI response:', error);
+      console.error('Error fetching AI response:', error);
       return {
         text: "Sorry, I encountered an error. Please try again later."
       };
@@ -64,19 +60,11 @@ const Study = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
-
-    // Add user message
     setMessages(prev => [...prev, { text: input, isUser: true }]);
     const userQuery = input;
     setInput('');
-    
-    // Show loading message
     setMessages(prev => [...prev, { text: "...", isUser: false }]);
-    
-    // Get AI response
     const aiResponse = await fetchAIResponse(userQuery);
-    
-    // Replace loading message with actual response
     setMessages(prev => {
       const newMessages = [...prev];
       newMessages[newMessages.length - 1] = { 

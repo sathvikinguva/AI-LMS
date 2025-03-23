@@ -98,3 +98,8 @@ The frontend is a React application built with Vite and TypeScript.
 - `npm run build`: Builds the application for production.
 - `npm run lint`: Lints the codebase using ESLint.
 - `npm run preview`: Previews the production build.
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+

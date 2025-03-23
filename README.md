@@ -60,7 +60,7 @@ This project is an AI-powered Learning Management System (LMS) that provides per
 
 3. Start the React application:
     ```sh
-    npm start
+    npm run dev
     ```
 
 ## Usage
